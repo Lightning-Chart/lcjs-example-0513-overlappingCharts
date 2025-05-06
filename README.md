@@ -28,6 +28,8 @@ The page can be extended with a scroll bar, and any chart can be dragged around 
 
 Meanwhile, all charts are receiving real-time streaming data and continue to operate normally in terms of panning, zooming and cursor interactions.
 
+**Compared to other web browsers, this example performs extremely poorly on Mozilla Firefox** due to relatively bad implementation of `CanvasRenderingContext2D.drawImage` when source is another canvas element.
+
 
 ## API Links
 
@@ -60,10 +62,10 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2022. All rights reserved.
 
 
-[Dashboard]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/classes/Dashboard.html
-[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/classes/ChartXY.html
-[Line series]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/
-[Axis]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/classes/Axis.html
-[Axis tick strategies]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/variables/AxisTickStrategies.html
-[Axis scroll strategies]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/variables/AxisScrollStrategies.html
+[Dashboard]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/classes/Dashboard.html
+[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/classes/ChartXY.html
+[Line series]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/
+[Axis]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/classes/Axis.html
+[Axis tick strategies]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/variables/AxisTickStrategies.html
+[Axis scroll strategies]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/variables/AxisScrollStrategies.html
 

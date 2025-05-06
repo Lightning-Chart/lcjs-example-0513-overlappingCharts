@@ -18,13 +18,6 @@ const windows = []
 const createWindow = (type) => {
     const container = document.createElement('div')
     windowsContainer.append(container)
-    container.style.position = 'absolute'
-    container.style.boxSizing = 'content-box'
-    container.style.width = `${windowsContainer.getBoundingClientRect().width / 4}px`
-    container.style.left = `${(windows.length % 4) * (windowsContainer.getBoundingClientRect().width / 4)}px`
-    container.style.height = '200px'
-    container.style.top = `${Math.floor(windows.length / 4) * 200}px`
-
     switch (type) {
         case 'lightningchart': {
             const chart = lc
@@ -81,7 +74,12 @@ const createWindow = (type) => {
             break
         }
     }
-
+    container.style.position = 'absolute'
+    container.style.boxSizing = 'content-box'
+    container.style.width = `${windowsContainer.getBoundingClientRect().width / 4}px`
+    container.style.left = `${(windows.length % 4) * (windowsContainer.getBoundingClientRect().width / 4)}px`
+    container.style.height = '200px'
+    container.style.top = `${Math.floor(windows.length / 4) * 200}px`
     container.addEventListener('pointerdown', (eventDown) => {
         if (eventDown.defaultPrevented) return
 
