@@ -23,20 +23,22 @@ const createWindow = (type) => {
             const chart = lc
                 .ChartXY({
                     container,
+                    legend: { visible: false },
                     theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
                 })
                 .setCursorMode('show-nearest')
                 .setTitleEffect(false)
                 .setSeriesBackgroundEffect(false)
-            chart.axisX.setScrollStrategy(AxisScrollStrategies.progressive).setDefaultInterval((state) => ({
+            chart.axisX.setScrollStrategy(AxisScrollStrategies.scrolling).setDefaultInterval((state) => ({
                 end: state.dataMax ?? 0,
                 start: (state.dataMax ?? 0) - 10_000,
                 stopAxisAfter: false,
             }))
             const series = chart
-                .addPointLineAreaSeries({ dataPattern: 'ProgressiveX' })
+                .addLineSeries({
+                    schema: { x: { pattern: 'progressive' }, y: { pattern: null } },
+                })
                 .setMaxSampleCount(100_000)
-                .setAreaFillStyle(emptyFill)
                 .setStrokeStyle((stroke) => stroke.setThickness(1))
                 .setEffect(false)
             windows.push({ type, container, chart, series })
