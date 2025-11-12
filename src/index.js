@@ -36,7 +36,7 @@ const createWindow = (type) => {
             }))
             const series = chart
                 .addLineSeries({
-                    schema: { x: { pattern: 'progressive' }, y: { pattern: null } },
+                    schema: { x: { pattern: 'progressive' }, y: { pattern: null } }, automaticColorIndex: 1,
                 })
                 .setMaxSampleCount(100_000)
                 .setStrokeStyle((stroke) => stroke.setThickness(1))
@@ -53,24 +53,37 @@ const createWindow = (type) => {
             container.append(canvas)
             canvas.style.width = '100%'
             canvas.style.height = '100%'
-            const ctx = canvas.getContext('2d')
 
-            ctx.fillStyle = 'blue'
-            ctx.fillRect(50, 50, 100, 100)
+            const image = new Image()
+            image.crossOrigin = ''
+            image.src = new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'examples/assets/0513/index.jpg'
 
-            ctx.beginPath()
-            ctx.arc(250, 100, 50, 0, Math.PI * 2)
-            ctx.fillStyle = 'red'
-            ctx.fill()
-            ctx.closePath()
+            image.onload = () => {
+                const ctx = canvas.getContext('2d')
+                const rect = canvas.getBoundingClientRect()
+                canvas.width = rect.width
+                canvas.height = (image.height / image.width) * rect.width
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+            }
 
-            ctx.beginPath()
-            ctx.moveTo(25, 100)
-            ctx.lineTo(225, 100)
-            ctx.strokeStyle = 'green'
-            ctx.lineWidth = 5
-            ctx.stroke()
-            ctx.closePath()
+            // const ctx = canvas.getContext('2d')
+
+            // ctx.fillStyle = 'blue'
+            // ctx.fillRect(50, 50, 100, 100)
+
+            // ctx.beginPath()
+            // ctx.arc(250, 100, 50, 0, Math.PI * 2)
+            // ctx.fillStyle = 'red'
+            // ctx.fill()
+            // ctx.closePath()
+
+            // ctx.beginPath()
+            // ctx.moveTo(25, 100)
+            // ctx.lineTo(225, 100)
+            // ctx.strokeStyle = 'green'
+            // ctx.lineWidth = 5
+            // ctx.stroke()
+            // ctx.closePath()
 
             windows.push({ type: 'other', container })
             break
@@ -121,6 +134,7 @@ windows.forEach((window) => {
     window.container.style.border = `solid 1px ${isDarkTheme ? 'white' : 'black'}`
     window.container.style.backgroundColor = isDarkTheme ? 'rgb(40,40,40)' : 'rgb(255,255,255)'
 })
+windowsContainer.style.backgroundColor = isDarkTheme ? 'rgb(40,40,40)' : 'rgb(255,255,255)'
 
 // Setup initial view for demo purposes
 windows[windows.length - 2].container.style.left = '130px'
